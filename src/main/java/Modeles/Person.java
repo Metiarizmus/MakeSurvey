@@ -3,15 +3,18 @@ package Modeles;
 import Enums.PersonRole;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public abstract class Person implements Serializable {
 
     private static int identificator = 0;
 
-    private int id;
+    private transient int id;
     private String name;
     private PersonRole role;
+    private String date;
 
     public Person(PersonRole role){
         identificator++;
@@ -19,6 +22,20 @@ public abstract class Person implements Serializable {
         this.role=role;
     }
 
+    public Person(PersonRole role,String date){
+        identificator++;
+        id=identificator;
+        this.role=role;
+        this.date=date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -58,12 +75,18 @@ public abstract class Person implements Serializable {
         return Objects.hash(id, name, role);
     }
 
+    /*@Override
+    public String toString() {
+        return "Name : " + name + " : Role : " + role.toString();
+    }*/
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", role=" + role +
+                ", date=" + date +
                 '}';
     }
 }

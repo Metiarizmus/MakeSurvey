@@ -1,8 +1,13 @@
 package Report;
 
+import Modeles.Person;
+import Repository.UserRepository;
+
 import java.io.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+
+//Создать метод в классе Отчет, который позволяет записать информацию о клиентах в файл (имя, роль, дата регистрации) - его создавали на прошлое занятие
 
 public class Report {
 
@@ -20,10 +25,7 @@ public class Report {
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }finally {
-
         }
-
     }
 
     public void getListDirectoryAndFile(File file) {
@@ -38,8 +40,21 @@ public class Report {
                 } else System.out.println(q.getName() + "\t file");
             }
         }
+    }
 
+    public void writeFile(List<Person> list) throws IOException {
+            FileOutputStream fos = new FileOutputStream("D://output.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(list);
+            oos.close();
+    }
 
+    public List<Person> readFile() throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream("D://output.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Person> newlist = (List<Person>) ois.readObject();
+        ois.close();
+        return newlist;
     }
 
 }

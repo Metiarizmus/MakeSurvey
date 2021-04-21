@@ -12,6 +12,19 @@ public class UserRepository{
 
     private List<Person> persons = new ArrayList<>();
 
+    public boolean saveUser(Person person, String date) {
+        if (person == null) {
+            return false;
+        }
+        if (person.getName() == null ||
+                person.getName().isEmpty()
+        ) {
+            throw new IllegalArgumentException("Name not found");
+        }
+        person.setDate(date);
+        return persons.add(person);
+    }
+
     public boolean saveUser(Person person) {
         if (person == null) {
             return false;
@@ -23,6 +36,8 @@ public class UserRepository{
         }
         return persons.add(person);
     }
+
+
 
 
     public List<Person> findUsers(){
