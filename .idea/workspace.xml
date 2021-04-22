@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe07391-918b-4fb1-b16e-0a08c91582c5" name="Default Changelist" comment="make listFiles">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Logi/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Logi/Logi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Logger/Log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Logger/Logi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Logi/Log.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Logi/Logi" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modeles/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modeles/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modeles/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modeles/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modeles/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modeles/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modeles/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modeles/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Report/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Report/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Logi/Log.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Modeles/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Modeles/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Report/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Report/Report.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

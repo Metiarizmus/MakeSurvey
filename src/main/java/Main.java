@@ -1,21 +1,21 @@
 
+import Logger.Log;
 import Modeles.Admin;
 import Modeles.Manager;
 import Modeles.Person;
 import Modeles.Worker;
 
-import Report.Report;
 import Repository.UserRepository;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        Log log = new Log();
+
         UserRepository userRepository = new UserRepository();
+        log.addLog("add Users");
         userRepository.saveUser(new Admin("Nastya"),"19.03.2015 13:15:43");
         userRepository.saveUser(new Admin("Nastya3"));
         userRepository.saveUser(new Manager("Reinhart"));
@@ -26,24 +26,15 @@ public class Main {
         userRepository.saveUser(new Worker("Soda"));
 
 
-       /*for (Person q : userRepository.findUsers()){
+        log.addLog("get list Users");
+       for (Person q : userRepository.findUsers()){
            System.out.println(q);
-       }*/
+       }
 
 
-         Report report = new Report();
+        log.addLog("test logg correct");
 
-        try {
-            for (Person q : report.readFile()){
-                System.out.println(q);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        report.writeFile(userRepository.findUsers());
 
 
 
