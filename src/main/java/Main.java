@@ -5,6 +5,7 @@ import Modeles.Manager;
 import Modeles.Person;
 import Modeles.Worker;
 
+import Report.Copy;
 import Repository.UserRepository;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class Main {
         Log log = new Log();
 
         UserRepository userRepository = new UserRepository();
-        log.addLog("add Users");
+        //log.addLog("add Users");
         userRepository.saveUser(new Admin("Nastya"),"19.03.2015 13:15:43");
         userRepository.saveUser(new Admin("Nastya3"));
         userRepository.saveUser(new Manager("Reinhart"));
@@ -26,26 +27,17 @@ public class Main {
         userRepository.saveUser(new Worker("Soda"));
 
 
-        log.addLog("get list Users");
+        //log.addLog("get list Users");
        for (Person q : userRepository.findUsers()){
            System.out.println(q);
        }
 
-
-        log.addLog("test logg correct");
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Copy copy = new Copy();
+        try {
+            copy.readFileToCopy();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
         //  PersonSearch search = new PersonSearch();
