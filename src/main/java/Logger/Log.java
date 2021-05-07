@@ -7,8 +7,6 @@ import java.util.Date;
 
 public class Log {
 
-
-
     public void addLog(String log) {
         SimpleDateFormat format = new SimpleDateFormat("MM.dd.yyyy HH:mm:ss");
         String data = format.format(new Date());
@@ -17,7 +15,7 @@ public class Log {
         PrintWriter writer = null;
 
         try {
-            writer = new PrintWriter(new FileWriter("C:\\Users\\Николай\\IdeaProjects\\Survey\\src\\main\\java\\Logger\\Logi",true));
+            writer = new PrintWriter(new FileWriter("D://logi.txt",true));
             writer.write(data+ " " +log+"\n");
 
         } catch (IOException e) {

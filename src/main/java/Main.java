@@ -1,21 +1,25 @@
 
+import Enums.PersonRole;
 import Logger.Log;
-import Modeles.Admin;
-import Modeles.Manager;
-import Modeles.Person;
-import Modeles.Worker;
+import Modeles.*;
 
 import Report.Copy;
 import Repository.UserRepository;
+import Services.UserServJDBC;
+import Services.interfaces.PropertyInf;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Random;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
 
         Log log = new Log();
 
         UserRepository userRepository = new UserRepository();
+
+        UserServJDBC userServJDBC = new UserServJDBC();
         //log.addLog("add Users");
         userRepository.saveUser(new Admin("Nastya"),"19.03.2015 13:15:43");
         userRepository.saveUser(new Admin("Nastya3"));
@@ -26,50 +30,16 @@ public class Main {
         userRepository.saveUser(new Admin("Max"),"01.01.2019 23:59:48");
         userRepository.saveUser(new Worker("Soda"));
 
-
         //log.addLog("get list Users");
-       for (Person q : userRepository.findUsers()){
-           System.out.println(q);
-       }
 
-        Copy copy = new Copy();
-        try {
-            copy.readFileToCopy();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        for (int i = 1; i < userRepository.findUsers().size(); i++) {
+            userServJDBC.addInDB(userRepository.findUsers().get(i));
         }
 
 
-        //  PersonSearch search = new PersonSearch();
-       // userRepository.removeUser();
 
 
-    /*    class SearchName implements IPersonSearch {
-            @Override
-            public boolean existByField(Person person) {
-                return person.getName().contentEquals("Nastya");
-            }
-        }*/
 
-
-      //  SearchName searchName = new SearchName();
-
-       /* new IPersonSearch() {
-            @Override
-            public boolean existByField(Person person) {
-                return person.getName().contentEquals("Nastya");
-            }
-        }*/
-
-/*
-        System.out.println(userRepository
-                .findUsers((person) ->
-                        person.getName().contentEquals("Nastya")));*/
-
-   /*     List<Person> users = userRepository.findUsers();
-        List<Person> response = users.stream()
-                .filter((el) -> el.getName().equals("Nastya"))
-                .collect(Collectors.toList());
-        System.out.println(response);*/
     }
 }
+

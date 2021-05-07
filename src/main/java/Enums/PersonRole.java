@@ -5,4 +5,5 @@ public enum PersonRole {
         ADMIN,
         MANAGER,
         WORKER;
+
 }

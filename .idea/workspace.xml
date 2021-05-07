@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fe07391-918b-4fb1-b16e-0a08c91582c5" name="Default Changelist" comment="make listFiles">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Logger/CopyLogi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Report/Copy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/interfaces/PropertyInf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sql.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Enums/PersonRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Enums/PersonRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Logger/CopyLogi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Logger/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Logger/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Logger/Logi" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/DAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/UserServJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/UserServJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Logger/Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Logger/Log.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MainExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MainExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Services/DAOFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/DAOFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Services/UserServJDBC.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/UserServJDBC.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,13 +46,12 @@
   <component name="ProjectId" id="1rLtDwNxEmXqseW2Q204YkeQCuM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
-    <option name="flattenPackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EpamSolutions/src/Catalog.java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../restartBook" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -56,9 +68,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainExample" />
+      <module name="Survey" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainExample" />
         <item itemvalue="Application.Catalog" />
       </list>
     </recent_temporary>

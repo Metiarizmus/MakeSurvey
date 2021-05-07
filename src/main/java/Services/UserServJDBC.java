@@ -1,42 +1,39 @@
 package Services;
 
 import Enums.PersonRole;
-import Modeles.Admin;
-import Modeles.Manager;
-import Modeles.Person;
-import Modeles.Worker;
-import Repository.UserRepository;
+import Modeles.*;
 import Services.interfaces.IUserService;
+import Services.interfaces.PropertyInf;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class UserServJDBC extends DAOFactory implements IUserService {
+public class UserServJDBC  implements IUserService {
 
-    private static final String SELECT_ALL = "SELECT * FROM person";
-    private static final String SELECT_ROLE = "SELECT * FROM person WHERE role=?";
-    private static final String SELECT_ID = "SELECT * FROM person WHERE id=?";
-    private static final String SELECT_ROLE_BY_ID = "SELECT id FROM person WHERE role=?";
-    private static final String INSERT = "INSERT INTO person(id,name,role) VALUES (?,?,?)";
+    private PropertyInf propertyInf = new PropertyInf();
 
+    DAOFactory daoFactory = DAOFactory.getDaoFactory();
 
     public void addInDB(Person person) {
+
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(INSERT);
+            connection = daoFactory.getConnection();
+            statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("INSERT_TEST"));
 
-            statement.setInt(1, person.getId());
-            statement.setString(2, person.getName());
-            statement.setString(3, String.valueOf(person.getRole()));
+           String[] s = new String[]{null,String.valueOf(person.getId()),person.getName(), String.valueOf(person.getRole())};
+
+            for (int i = 1; i <=s.length-1; i++) {
+                statement.setString(i, String.valueOf(s[i]));
+            }
+
+
 
             statement.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -61,21 +58,17 @@ public class UserServJDBC extends DAOFactory implements IUserService {
     public List<Person> findAllUsers() {
         List<Person> list = new ArrayList<>();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet result = null;
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet result;
 
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(SELECT_ALL);
+            connection =  daoFactory.getConnection();
+            statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ALL"));
             result = statement.executeQuery();
 
             while (result.next()){
-                Person person = new Worker(PersonRole.ADMIN);
-                person.setId(result.getInt("id"));
-                person.setName(result.getString("name"));
-                person.setRole(PersonRole.valueOf(result.getString("role")));
-                list.add(person);
+                list.add(getInfByPerson(result));
             }
 
         } catch (SQLException throwables) {
@@ -94,38 +87,15 @@ public class UserServJDBC extends DAOFactory implements IUserService {
         ResultSet result = null;
 
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(SELECT_ROLE);
+            connection =  daoFactory.getConnection();
+            statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ROLE"));
             statement.setString(1, String.valueOf(role));
             result = statement.executeQuery();
 
             while (result.next()){
-
-                if(role == PersonRole.ADMIN){
-                    Person admin = new Admin();
-                    admin.setId(result.getInt("id"));
-                    admin.setName(result.getString("name"));
-                    admin.setRole(PersonRole.ADMIN);
-                    list.add(admin);
-                }
-
-                if(role == PersonRole.WORKER){
-                    Person worker = new Worker();
-                    worker.setId(result.getInt("id"));
-                    worker.setName(result.getString("name"));
-                    worker.setRole(PersonRole.WORKER);
-                    list.add(worker);
-                }
-
-                if(role == PersonRole.MANAGER){
-                    Person manager = new Manager();
-                    manager.setId(result.getInt("id"));
-                    manager.setName(result.getString("name"));
-                    manager.setRole(PersonRole.MANAGER);
-                    list.add(manager);
-                }
-
+                list.add(getInfByPerson(result));
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
@@ -163,19 +133,13 @@ public class UserServJDBC extends DAOFactory implements IUserService {
         ResultSet result = null;
 
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(SELECT_ID);
+            connection =  daoFactory.getConnection();
+            statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ID"));
             statement.setInt(1, id);
             result = statement.executeQuery();
 
             while (result.next()){
-
-                Person person = new Admin();
-                person.setId(result.getInt("id"));
-                person.setName(result.getString("name"));
-                person.setRole(PersonRole.valueOf(result.getString("role")));
-                list.add(person);
-
+                list.add(getInfByPerson(result));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -214,26 +178,15 @@ public class UserServJDBC extends DAOFactory implements IUserService {
         ResultSet result = null;
 
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(SELECT_ROLE_BY_ID);
+            connection =  daoFactory.getConnection();
+            statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ROLE_BY_ID"));
             statement.setString(1, String.valueOf(role));
             result = statement.executeQuery();
 
             while (result.next()){
-                if(role == PersonRole.ADMIN){
-
-                    list.add(result.getInt("id"));
-                }
-
-                if(role == PersonRole.WORKER){
-                    list.add(result.getInt("id"));
-                }
-
-                if(role == PersonRole.MANAGER){
-                    list.add(result.getInt("id"));
-                }
-
+                list.add(result.getInt("id"));
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
@@ -267,8 +220,8 @@ public class UserServJDBC extends DAOFactory implements IUserService {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(INSERT);
+            connection =  daoFactory.getConnection();
+            statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("INSERT"));
 
             statement.setInt(1, person.getId());
             statement.setString(2, person.getName());
@@ -307,5 +260,11 @@ public class UserServJDBC extends DAOFactory implements IUserService {
         return false;
     }
 
-
+    private Person getInfByPerson(ResultSet result) throws SQLException {
+        Person person = new Worker(PersonRole.MANAGER);
+        person.setId(result.getInt("id"));
+        person.setName(result.getString("name"));
+        person.setRole(PersonRole.valueOf(result.getString("role")));
+        return person;
+    }
 }
