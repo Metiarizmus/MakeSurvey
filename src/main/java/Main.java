@@ -32,8 +32,8 @@ public class Main {
 
         //log.addLog("get list Users");
 
-        for (int i = 1; i < userRepository.findUsers().size(); i++) {
-            userServJDBC.addInDB(userRepository.findUsers().get(i));
+        for (Person q : userServJDBC.findAllUsers()){
+            System.out.println(q);
         }
 
 

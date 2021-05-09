@@ -14,14 +14,17 @@ public class UserServJDBC  implements IUserService {
 
     private PropertyInf propertyInf = new PropertyInf();
 
-    DAOFactory daoFactory = DAOFactory.getDaoFactory();
+    Connection daoFactory = DAOFactory.getInstance().getConnection();
+
+    public UserServJDBC() throws SQLException {
+    }
 
     public void addInDB(Person person) {
 
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = daoFactory.getConnection();
+            connection = daoFactory;
             statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("INSERT_TEST"));
 
            String[] s = new String[]{null,String.valueOf(person.getId()),person.getName(), String.valueOf(person.getRole())};
@@ -63,7 +66,7 @@ public class UserServJDBC  implements IUserService {
         ResultSet result;
 
         try {
-            connection =  daoFactory.getConnection();
+            connection =  daoFactory;
             statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ALL"));
             result = statement.executeQuery();
 
@@ -73,6 +76,9 @@ public class UserServJDBC  implements IUserService {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+        if (list.isEmpty()){
+            System.err.println("list is null");
         }
 
         return list;
@@ -87,7 +93,7 @@ public class UserServJDBC  implements IUserService {
         ResultSet result = null;
 
         try {
-            connection =  daoFactory.getConnection();
+            connection =  daoFactory;
             statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ROLE"));
             statement.setString(1, String.valueOf(role));
             result = statement.executeQuery();
@@ -133,7 +139,7 @@ public class UserServJDBC  implements IUserService {
         ResultSet result = null;
 
         try {
-            connection =  daoFactory.getConnection();
+            connection =  daoFactory;
             statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ID"));
             statement.setInt(1, id);
             result = statement.executeQuery();
@@ -178,7 +184,7 @@ public class UserServJDBC  implements IUserService {
         ResultSet result = null;
 
         try {
-            connection =  daoFactory.getConnection();
+            connection =  daoFactory;
             statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("SELECT_ROLE_BY_ID"));
             statement.setString(1, String.valueOf(role));
             result = statement.executeQuery();
@@ -220,7 +226,7 @@ public class UserServJDBC  implements IUserService {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection =  daoFactory.getConnection();
+            connection =  daoFactory;
             statement = connection.prepareStatement(propertyInf.getSqlQuery().getProperty("INSERT"));
 
             statement.setInt(1, person.getId());
